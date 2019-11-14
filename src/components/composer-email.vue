@@ -61,6 +61,7 @@
                 '': !$v.composerSubject.$invalid
               }"
               placeholder="Subject"
+              maxLength="100"
             />
           </li>
           <li class="form__list-item">
