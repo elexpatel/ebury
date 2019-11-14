@@ -28,11 +28,20 @@ textarea {
 }
 
 button {
+  display:flex;
+  align-items:center;
   font-family:$font-family;
   font-weight:500;  
   outline:0 none;  
   border:none;
   border-radius:2.0em;
-  padding:1.0em;
-  color:$colour-placeholder;
+  padding:0.5em 1.0em;
+  color:$colour-light;
+  background-color:$colour-primary;
+  cursor:pointer;
+
+  &:disabled {
+    color:$colour-placeholder;
+    background-color:$colour-border;
+  }
 }

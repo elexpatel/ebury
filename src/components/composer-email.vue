@@ -34,8 +34,18 @@
         </ul>
       </fieldset>
       <div class="form__button-container">
-        <button class="form__button-attachment">@</button>
-        <button class="form__button--inactive"><span>-></span> Send</button>
+        <button class="form__button-attachment">
+          <svg class="form__button-attachment-icon" viewBox="0 0 24 24" width="24" height="24">
+            <use :xlink:href="`#icon-attachment`" />
+          </svg>
+          <span class="form__button-sr-only" style="display:none;">Attachment</span>
+        </button>
+        <button class="form__button--inactive">
+          <svg class="form__button-arrow-right" viewBox="0 0 24 24" width="24" height="24">
+            <use :xlink:href="`#icon-arrow-right`" />
+          </svg>
+          <span class="form__button-label">Send</span>
+        </button>
       </div>
       <!-- <pre>{{ $v }}</pre> -->
     </form>

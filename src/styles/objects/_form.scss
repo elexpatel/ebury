@@ -53,6 +53,41 @@
   &__button-container {
     display:flex;
     justify-content:space-between;
-    margin:16px;
+    margin:0 16px 16px;
+  }
+
+  &__button--inactive {
+    color:$colour-placeholder;
+    background-color:$colour-border;    
+  }
+
+  &__button-arrow-right {
+    margin-right:6px;
+    fill:$colour-light;
+  }
+
+  &__button--inactive > .form__button-arrow-right {
+    fill:$colour-placeholder;
+  }
+
+  &__button-sr-only {
+    display:none;
+  }
+
+  &__button-attachment {
+    width:2.5em;
+    height:2.5em;
+    color:$colour-base;
+    background-color:$colour-light;
+    border-radius:100%;
+    border:solid 1px $colour-border;
+    position:relative;
+  }
+
+  &__button-attachment-icon {
+    position:absolute;
+    top:8px;
+    left:6px;
+    fill:$colour-placeholder;
   }
 }
