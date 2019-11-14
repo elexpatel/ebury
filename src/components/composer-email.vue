@@ -100,6 +100,7 @@
               type="file"
               class="form__field form__field-attachment"
               multiple
+              accept="image/*"
             />
           </li>
         </ul>
@@ -148,7 +149,7 @@
 </template>
 
 <script>
-import { required, requiredIf } from "vuelidate/lib/validators";
+import { required, requiredIf, maxLength } from "vuelidate/lib/validators";
 
 const multipleEmails = value => {
   const emailRx = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -186,7 +187,8 @@ export default {
       multipleEmails
     },
     composerSubject: {
-      required
+      required,
+      maxLength: maxLength(100)
     },
     composerMessage: {
       required
