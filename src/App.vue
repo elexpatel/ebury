@@ -7,7 +7,7 @@
 
 <script>
 import ComposerEmail from "./components/composer-email.vue";
-import Icons from "./components/icons"
+import Icons from "./components/icons";
 
 export default {
   name: "app",

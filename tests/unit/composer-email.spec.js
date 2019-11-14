@@ -50,7 +50,7 @@ describe("composer-email.vue", () => {
     let config = createConfig();
     config.mocks.$store.getters.composerFrom.emailTo = ["mock"];
     const wrapper = shallowMount(ComposerEmail, config);
-    console.log(wrapper.vm)
+    console.log(wrapper.vm);
     expect(wrapper.find("#composer-to-email").element.value).toBe("false"); // make fail on setup
   });
 
