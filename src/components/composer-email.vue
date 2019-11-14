@@ -80,8 +80,7 @@ export default {
     },
     composerMessage: {
       required
-    },
-    //validationGroup: ['composerTo', 'composerCC', 'composerBCC']      
+    }    
   },
   computed: {
     composerForm() {
