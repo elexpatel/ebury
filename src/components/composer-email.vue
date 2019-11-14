@@ -3,7 +3,7 @@
     <div class="composer__header-container">
       <h1 class="composer__header">Send E-mail</h1>
     </div>
-    <form class="form">
+    <form class="form" @submit.prevent novalidate>
       <fieldset class="form__fieldset">
         <legend class="form__legend">Send E-mail</legend>
         <ul class="form__list">
@@ -34,13 +34,13 @@
         </ul>
       </fieldset>
       <div class="form__button-container">
-        <button class="form__button-attachment">
+        <button type="button" class="form__button-attachment">
           <svg class="form__button-attachment-icon" viewBox="0 0 24 24" width="24" height="24">
             <use :xlink:href="`#icon-attachment`" />
           </svg>
           <span class="form__button-sr-only" style="display:none;">Attachment</span>
         </button>
-        <button class="form__button--inactive">
+        <button type="submit" :class="[$v.$dirty && !$v.$invalid ? 'form__button' : 'form__button--inactive']" @click="sendEmail">
           <svg class="form__button-arrow-right" viewBox="0 0 24 24" width="24" height="24">
             <use :xlink:href="`#icon-arrow-right`" />
           </svg>
@@ -140,6 +140,14 @@ export default {
       },
       set(value) {
         this.$store.dispatch("updateComposer", { emailMessage: value });
+      }
+    }
+  },
+  methods: {
+    sendEmail() {
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        console.log('send')
       }
     }
   }
