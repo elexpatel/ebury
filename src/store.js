@@ -26,19 +26,14 @@ export default new Vuex.Store({
   },
   mutations: {
     UPDATE_COMPOSER(state, payload) {
-      console.log(state);
-      console.log(payload);
+      state.composerForm = Object.assign(state.composerForm, payload);
     },
     UPDATE_COMPOSER_CONFORMATION(state, status) {
       state.composerConformation = status;
     }
   },
   getters: {
-    composerFrom(state) {
-      return state.composerForm;
-    },
-    composerConfirmation(state) {
-      return state.composerConformation;
-    }
+    composerFrom: state => state.composerForm,
+    composerConfirmation: state => state.composerConformatio
   }
 });
