@@ -1,4 +1,20 @@
 .composer {
-  max-width:500px;
+  min-width:700px;
   min-height:500px;
+  background-color:$colour-light;
+  border-radius:5px;
+  box-shadow:0 5px 20px rgba(0, 0, 0, 0.3);
+  overflow:hidden;
+
+  &__header-container {
+    padding:32px;
+    color:$colour-light;
+    background-color:$colour-dark;    
+  }
+
+  &__header {
+    font-size:1.2em;
+    margin:0;
+    color:$colour-light;
+  }
 }

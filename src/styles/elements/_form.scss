@@ -1,0 +1,38 @@
+%fieldStyling {
+  font-family:$font-family;
+  font-size:0.9em;
+  font-weight:500;
+  padding:1.0em;
+  outline:0 none;
+  border:solid 1px $colour-border;
+  border-radius:5px;   
+  color:$colour-placeholder;
+  box-sizing:border-box;
+}
+
+input {
+  @extend %fieldStyling;
+
+  &:focus {
+    color:$colour-base;
+  }
+
+  &::placeholder {
+    color:$colour-placeholder;
+  }
+}
+
+textarea {
+  @extend %fieldStyling; 
+  line-height:1.5em;
+}
+
+button {
+  font-family:$font-family;
+  font-weight:500;  
+  outline:0 none;  
+  border:none;
+  border-radius:2.0em;
+  padding:1.0em;
+  color:$colour-placeholder;
+}

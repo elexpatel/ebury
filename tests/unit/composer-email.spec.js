@@ -38,18 +38,21 @@ describe("composer-email.vue", () => {
     expect(wrapper.find("#composer-attachment").element.value).toBe("");
 
     // inspect data values (quicker)
-    expect(wrapper.vm.composerTo).toBe("");
-    expect(wrapper.vm.composerCC).toBe("");
-    expect(wrapper.vm.composerBCC).toBe("");
-    expect(wrapper.vm.composerSubject).toBe("");
-    expect(wrapper.vm.composerMessage).toBe("");
-    expect(wrapper.vm.composerAttachment).toBe("");
+    // expect(wrapper.vm.composerTo).toBe("");
+    // expect(wrapper.vm.composerCC).toBe("");
+    // expect(wrapper.vm.composerBCC).toBe("");
+    // expect(wrapper.vm.composerSubject).toBe("");
+    // expect(wrapper.vm.composerMessage).toBe("");
+    // expect(wrapper.vm.composerAttachment).toBe("");
   });
 
-  // it("should invalidate 'To' field if incorrect email format", () => {
-  //   const wrapper = shallowMount(ComposerEmail);
-  //   expect(wrapper.find("#composer-to-email").value).toBe("false"); // make fail on setup
-  // });
+  it("should invalidate 'To' field if incorrect email format", () => {
+    let config = createConfig();
+    config.mocks.$store.getters.composerFrom.emailTo = ["mock"];
+    const wrapper = shallowMount(ComposerEmail, config);
+    console.log(wrapper.vm)
+    expect(wrapper.find("#composer-to-email").element.value).toBe("false"); // make fail on setup
+  });
 
   // it("should allow multiple valid email addresses in 'To' field", () => {
   //   const wrapper = shallowMount(ComposerEmail);
