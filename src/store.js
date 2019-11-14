@@ -11,7 +11,7 @@ export default new Vuex.Store({
       emailBCC: [],
       emailSubject: "",
       emailMessage: "",
-      emailAttachements: []
+      emailAttachments: []
     },
     composerConformation: false
   },
@@ -22,7 +22,13 @@ export default new Vuex.Store({
     sendComposer($event) {
       // this is where an AJAX POST request would be preformed to the backend API.
       $event.commit("UPDATE_COMPOSER_CONFORMATION", true);
-    }
+    },
+    addAttachment($event, file) {
+      $event.commit("ADD_COMPOSER_ATTACHMENT", file);
+    },
+    removeAttachment($event, id) {
+      $event.commit("REMOVE_COMPOSER_ATTACHMENT", id);
+    }    
   },
   mutations: {
     UPDATE_COMPOSER(state, payload) {
@@ -30,10 +36,16 @@ export default new Vuex.Store({
     },
     UPDATE_COMPOSER_CONFORMATION(state, status) {
       state.composerConformation = status;
+    },
+    ADD_COMPOSER_ATTACHMENT(state, file) {
+      state.composerForm.emailAttachments = [...state.composerForm.emailAttachments, file];
+    },
+    REMOVE_COMPOSER_ATTACHMENT(state, filename) {
+      state.composerForm.emailAttachments = state.composerForm.emailAttachments.filter(attachment => attachment.name !== filename);
     }
   },
   getters: {
     composerFrom: state => state.composerForm,
-    composerConfirmation: state => state.composerConformatio
+    composerConfirmation: state => state.composerConformation
   }
 });

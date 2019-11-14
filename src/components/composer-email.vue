@@ -76,15 +76,17 @@
               placeholder="Message"
             ></textarea>
           </li>
-          <li :class="[attachmentList.length ? 'form__list-item' : 'form__list-item--hidden']">
+          <li :class="[composerForm.emailAttachments.length ? 'form__list-item' : 'form__list-item--hidden']">
             <h2 class="form__attachment-header">Attached files</h2>
             <div class="form__attachment-container">
-              <span v-for="(attachment, index) in attachmentList" :key="index" class="form__attachment-image-wrapper">
-                <img :src="attachment" class="form__attachment-image" />
+              <span v-for="(attachment, index) in composerForm.emailAttachments" :key="index" class="form__attachment-image-wrapper">
+                <img :src="attachment.data" class="form__attachment-image" />
                 <div class="form__attachment-image-mask">
-                  <svg class="form__attachment-image-icon" viewBox="0 0 24 24" width="24" height="24">
-                    <use :xlink:href="`#icon-bin`" />
-                  </svg>
+                  <div class="form__attachment-image-icon-wrapper" @click="removeAttachment(attachment.name)">
+                    <svg class="form__attachment-image-icon" viewBox="0 0 24 24" width="24" height="24">
+                      <use :xlink:href="`#icon-bin`" />
+                    </svg>
+                  </div>
                 </div>
               </span>
             </div>
@@ -276,18 +278,16 @@ export default {
       this.$refs.attachmentField.click();
     },
     updatedAttachment(files) {
-      //const file = files;
-      console.log(typeof files)
       if (files.length === 1) {
-        this.attachmentList.push(URL.createObjectURL(files[0]));
+        this.$store.dispatch("addAttachment", { name: files[0].name, data: URL.createObjectURL(files[0]) });
       } else if (files.length > 1) {
-        Array.from(files).forEach(file => { 
-          this.attachmentList.push(URL.createObjectURL(file));
+        Array.from(files).forEach(file => {
+          this.$store.dispatch("addAttachment", { name: file.name, data: URL.createObjectURL(file) });
         });
       }
-
-      //console.log(files)
-      //this.attachmentList.push(URL.createObjectURL(file));
+    },
+    removeAttachment(fileName) {
+      this.$store.dispatch("removeAttachment", fileName);
     }
   }
 };

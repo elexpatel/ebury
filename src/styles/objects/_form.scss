@@ -86,10 +86,21 @@
     border-radius:5px;
   }
 
-  &__attachment-image-icon {
-    fill:$colour-placeholder;
-    height:48px;
+  &__attachment-image-icon-wrapper {
+    display:flex;
+    justify-content:center;
+    align-items:center;   
+    background-color:$colour-placeholder;
     width:48px;
+    height:48px;
+    border-radius:50%;
+    cursor:pointer;
+  }
+
+  &__attachment-image-icon {
+    fill:$colour-light;
+    height:32px;
+    width:32px;
   }
 
   &__attachment-image {
