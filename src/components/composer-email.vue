@@ -53,25 +53,35 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required, requiredIf } from "vuelidate/lib/validators";
+
+const multipleEmails = (value) => {
+  const emailRx = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (value === "") return true;
+  return value.indexOf(",") !== -1 ? value.split(",").every(item => item === "" ? true : emailRx.test(item.trim())) : emailRx.test(value);
+};
 
 export default {
   validations: {
     composerTo: {
-      required
+      required: requiredIf(value => value.composerCC === "" && value.composerBCC === ""), 
+      multipleEmails
     },
     composerCC: {
-      required
+      required: requiredIf(value => value.composerTo === "" && value.composerBCC === ""),
+      multipleEmails
     },
     composerBCC: {
-      required
+      required: requiredIf(value => value.composerTo === "" && value.composerCC === ""),
+      multipleEmails
     },
     composerSubject: {
       required
     },
     composerMessage: {
       required
-    }      
+    },
+    //validationGroup: ['composerTo', 'composerCC', 'composerBCC']      
   },
   computed: {
     composerForm() {
