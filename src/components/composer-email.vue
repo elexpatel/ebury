@@ -20,8 +20,18 @@
               }"
               placeholder="To"
             />
-            <div v-show="$v.composerTo.$error && !$v.composerTo.required" class="form__field-validation-message--invalid">Please add an email address</div>
-            <div v-show="$v.composerTo.$error && !$v.composerTo.multipleEmails" class="form__field-validation-message--invalid">Please add a valid email address</div>
+            <div
+              v-show="$v.composerTo.$error && !$v.composerTo.required"
+              class="form__field-validation-message--invalid"
+            >
+              Please add an email address
+            </div>
+            <div
+              v-show="$v.composerTo.$error && !$v.composerTo.multipleEmails"
+              class="form__field-validation-message--invalid"
+            >
+              Please add a valid email address
+            </div>
           </li>
           <li class="form__list-item">
             <label for="composer-cc-email" class="form__label">CC</label>
@@ -36,8 +46,18 @@
               }"
               placeholder="CC"
             />
-            <div v-show="$v.composerCC.$error && !$v.composerCC.required" class="form__field-validation-message--invalid">Please add an email address</div>
-            <div v-show="$v.composerCC.$error && !$v.composerCC.multipleEmails" class="form__field-validation-message--invalid">Please add a valid email address</div>            
+            <div
+              v-show="$v.composerCC.$error && !$v.composerCC.required"
+              class="form__field-validation-message--invalid"
+            >
+              Please add an email address
+            </div>
+            <div
+              v-show="$v.composerCC.$error && !$v.composerCC.multipleEmails"
+              class="form__field-validation-message--invalid"
+            >
+              Please add a valid email address
+            </div>
           </li>
           <li class="form__list-item">
             <label for="composer-bcc-email" class="form__label">BCC</label>
@@ -52,8 +72,18 @@
               }"
               placeholder="BCC"
             />
-            <div v-show="$v.composerBCC.$error && !$v.composerBCC.required" class="form__field-validation-message--invalid">Please add an email address</div>
-            <div v-show="$v.composerBCC.$error && !$v.composerBCC.multipleEmails" class="form__field-validation-message--invalid">Please add a valid email address</div>            
+            <div
+              v-show="$v.composerBCC.$error && !$v.composerBCC.required"
+              class="form__field-validation-message--invalid"
+            >
+              Please add an email address
+            </div>
+            <div
+              v-show="$v.composerBCC.$error && !$v.composerBCC.multipleEmails"
+              class="form__field-validation-message--invalid"
+            >
+              Please add a valid email address
+            </div>
           </li>
           <li class="form__list-item">
             <label for="composer-subject" class="form__label">Subject</label>
@@ -69,8 +99,21 @@
               placeholder="Subject"
               maxLength="100"
             />
-            <div v-show="$v.composerSubject.$error && !$v.composerSubject.required" class="form__field-validation-message--invalid">Please add a subject line</div>
-            <div v-show="$v.composerSubject.$error && !$v.composerSubject.maxLength" class="form__field-validation-message--invalid">Subject should not be greater than {{ $v.composerSubject.maxLength.max }} characters</div>            
+            <div
+              v-show="$v.composerSubject.$error && !$v.composerSubject.required"
+              class="form__field-validation-message--invalid"
+            >
+              Please add a subject line
+            </div>
+            <div
+              v-show="
+                $v.composerSubject.$error && !$v.composerSubject.maxLength
+              "
+              class="form__field-validation-message--invalid"
+            >
+              Subject should not be greater than
+              {{ $v.composerSubject.maxLength.max }} characters
+            </div>
           </li>
           <li class="form__list-item">
             <label for="composer-message" class="form__label">Message</label>
@@ -84,7 +127,12 @@
               }"
               placeholder="Message"
             ></textarea>
-            <div v-show="$v.composerMessage.$error && !$v.composerMessage.required" class="form__field-validation-message--invalid">Please add a message</div>
+            <div
+              v-show="$v.composerMessage.$error && !$v.composerMessage.required"
+              class="form__field-validation-message--invalid"
+            >
+              Please add a message
+            </div>
           </li>
           <li
             :class="[
@@ -149,8 +197,7 @@
           >
             <use :xlink:href="`#icon-attachment`" />
           </svg>
-          <span class="form__button-sr-only">Attachment</span
-          >
+          <span class="form__button-sr-only">Attachment</span>
         </button>
         <button
           type="submit"

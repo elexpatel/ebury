@@ -21,8 +21,6 @@ npm run build
 npm run test
 ```
 
-***
-
 ## Additional features
 
 * Add validation message under each field
