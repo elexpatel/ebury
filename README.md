@@ -21,10 +21,12 @@ npm run build
 npm run test
 ```
 
-## New features
+***
 
-. Add validation message under each field
-. Add micro animation on validation message
-. Field border colour changed on validation success
-. Transition effect on border colour change
-. Add page transition when valid form submitted
+## Additional features
+
+* Add validation message under each field
+* Add micro animation on validation message
+* Field border colour changed on validation success
+* Transition effect on border colour change
+* Add page transition when valid form submitted

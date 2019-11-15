@@ -37,7 +37,7 @@
   }
 
   &__confirmation-header {
-    color:$colour-placeholder;
+    color:$colour-base;
     font-size:1.4em;
   }
 
@@ -54,6 +54,7 @@
 
   &__confirmation-message {
     white-space: pre-wrap;
+    margin-bottom:35px;
   }
 
   &__confirmation-recipient {
@@ -72,7 +73,7 @@
 @include grid-media-query("small-outwards") {
   .composer {
     flex:0 0 auto;
-    min-width:712px;
+    width:712px;
     margin:0;
   }
 }
