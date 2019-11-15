@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <ComposerEmail v-if="!composerConfirmationStatus" />
-    <ComposerConfirmation v-else />
+    <transition name="composer" mode="out-in">
+      <ComposerEmail v-if="!composerConfirmationStatus" />
+      <ComposerConfirmation v-else />
+    </transition>
     <Icons />
   </div>
 </template>

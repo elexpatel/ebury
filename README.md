@@ -1,5 +1,6 @@
 # Ebury
 
+
 ## Project setup
 ```
 npm install
@@ -20,15 +21,10 @@ npm run build
 npm run test
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## New features
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-
+. Add validation message under each field
+. Add micro animation on validation message
+. Field border colour changed on validation success
+. Transition effect on border colour change
+. Add page transition when valid form submitted

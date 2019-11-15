@@ -16,10 +16,12 @@
               class="form__field"
               :class="{
                 'form__field--invalid': $v.composerTo.$error,
-                '': !$v.composerTo.$invalid
+                'form__field--valid': !$v.composerTo.$invalid
               }"
               placeholder="To"
             />
+            <div v-show="$v.composerTo.$error && !$v.composerTo.required" class="form__field-validation-message--invalid">Please add an email address</div>
+            <div v-show="$v.composerTo.$error && !$v.composerTo.multipleEmails" class="form__field-validation-message--invalid">Please add a valid email address</div>
           </li>
           <li class="form__list-item">
             <label for="composer-cc-email" class="form__label">CC</label>
@@ -30,10 +32,12 @@
               class="form__field"
               :class="{
                 'form__field--invalid': $v.composerCC.$error,
-                '': !$v.composerCC.$invalid
+                'form__field--valid': !$v.composerCC.$invalid
               }"
               placeholder="CC"
             />
+            <div v-show="$v.composerCC.$error && !$v.composerCC.required" class="form__field-validation-message--invalid">Please add an email address</div>
+            <div v-show="$v.composerCC.$error && !$v.composerCC.multipleEmails" class="form__field-validation-message--invalid">Please add a valid email address</div>            
           </li>
           <li class="form__list-item">
             <label for="composer-bcc-email" class="form__label">BCC</label>
@@ -44,10 +48,12 @@
               class="form__field"
               :class="{
                 'form__field--invalid': $v.composerBCC.$error,
-                '': !$v.composerBCC.$invalid
+                'form__field--valid': !$v.composerBCC.$invalid
               }"
               placeholder="BCC"
             />
+            <div v-show="$v.composerBCC.$error && !$v.composerBCC.required" class="form__field-validation-message--invalid">Please add an email address</div>
+            <div v-show="$v.composerBCC.$error && !$v.composerBCC.multipleEmails" class="form__field-validation-message--invalid">Please add a valid email address</div>            
           </li>
           <li class="form__list-item">
             <label for="composer-subject" class="form__label">Subject</label>
@@ -58,11 +64,13 @@
               class="form__field"
               :class="{
                 'form__field--invalid': $v.composerSubject.$error,
-                '': !$v.composerSubject.$invalid
+                'form__field--valid': !$v.composerSubject.$invalid
               }"
               placeholder="Subject"
               maxLength="100"
             />
+            <div v-show="$v.composerSubject.$error && !$v.composerSubject.required" class="form__field-validation-message--invalid">Please add a subject line</div>
+            <div v-show="$v.composerSubject.$error && !$v.composerSubject.maxLength" class="form__field-validation-message--invalid">Subject should not be greater than {{ $v.composerSubject.maxLength.max }} characters</div>            
           </li>
           <li class="form__list-item">
             <label for="composer-message" class="form__label">Message</label>
@@ -72,10 +80,11 @@
               class="form__field form__field-textarea"
               :class="{
                 'form__field--invalid': $v.composerMessage.$error,
-                '': !$v.composerMessage.$invalid
+                'form__field--valid': !$v.composerMessage.$invalid
               }"
               placeholder="Message"
             ></textarea>
+            <div v-show="$v.composerMessage.$error && !$v.composerMessage.required" class="form__field-validation-message--invalid">Please add a message</div>
           </li>
           <li
             :class="[
@@ -133,15 +142,14 @@
           @click="openAttachment"
         >
           <svg
-            class="form__button-attachment-icon"
+            class="icon__composer-attachment"
             viewBox="0 0 24 24"
             width="24"
             height="24"
           >
             <use :xlink:href="`#icon-attachment`" />
           </svg>
-          <span class="form__button-sr-only" style="display:none;"
-            >Attachment</span
+          <span class="form__button-sr-only">Attachment</span
           >
         </button>
         <button
@@ -154,7 +162,7 @@
           @click="sendEmail"
         >
           <svg
-            class="form__button-arrow-right"
+            class="icon__composer-send"
             viewBox="0 0 24 24"
             width="24"
             height="24"
@@ -164,7 +172,6 @@
           <span class="form__button-label">Send</span>
         </button>
       </div>
-      <!-- <pre>{{ $v }}</pre> -->
     </form>
   </div>
 </template>
@@ -281,7 +288,6 @@ export default {
       this.$v.$touch();
       if (!this.$v.$invalid) {
         this.$store.dispatch("sendComposer");
-        //console.log("send");
       }
     },
     openAttachment() {

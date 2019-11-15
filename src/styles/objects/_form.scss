@@ -15,7 +15,7 @@
   &__list {
     list-style:none;
     padding:0;
-    margin:16px;
+    margin:40px 40px 0;
   }
 
   &__list-item {
@@ -36,6 +36,7 @@
     appearance:none;
     display:inline-block;    
     width: 100%;
+    transition: border ease-in 0.25s, box-shadow ease-in 0.2s;
   }
 
   &__field:focus {
@@ -44,7 +45,13 @@
 
   &__field--invalid {
     border:solid 1px $colour-danger;
+    color:$colour-base;    
   }
+
+  &__field--valid {
+    border:solid 1px $colour-success;
+    color:$colour-base;    
+  }  
   
   &__field-textarea {
     height:15.0em;
@@ -54,10 +61,18 @@
     display:none;
   }
 
+  &__field-validation-message--invalid {
+    padding-top:0.5em;
+    font-family:$font-family;
+    font-size:0.9em;
+    color:$colour-danger;
+    @include fadeInDownShort($duration:0.25s);
+  }  
+
   &__button-container {
     display:flex;
     justify-content:space-between;
-    margin:0 16px 16px;
+    margin:0 40px 40px;
   }
 
   &__button--inactive {
@@ -65,12 +80,7 @@
     background-color:$colour-border;    
   }
 
-  &__button-arrow-right {
-    margin-right:6px;
-    fill:$colour-light;
-  }
-
-  &__button--inactive > .form__button-arrow-right {
+  &__button--inactive > .icon__composer-send {
     fill:$colour-placeholder;
   }
 
@@ -86,12 +96,5 @@
     border-radius:100%;
     border:solid 1px $colour-border;
     position:relative;
-  }
-
-  &__button-attachment-icon {
-    position:absolute;
-    top:8px;
-    left:6px;
-    fill:$colour-placeholder;
   }
 }

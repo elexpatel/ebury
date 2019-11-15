@@ -5,4 +5,16 @@
     height:6.0em;
     fill: $colour-success;
   }
+
+  &__composer-send {
+    margin:0 6px;
+    fill:$colour-light;
+  } 
+  
+  &__composer-attachment {
+    position:absolute;
+    top:8px;
+    left:6px;
+    fill:$colour-placeholder;
+  }  
 }

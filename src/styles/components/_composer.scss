@@ -6,8 +6,16 @@
   overflow:hidden;
   margin:0 16px;
 
+  &-enter-active {
+    @include slideInRight($duration:0.5s);
+  }
+
+  &-leave-active {
+    @include slideInRight($duration:0.5s, $direction: reverse);
+  }  
+
   &__header-container {
-    padding:32px;
+    padding:32px 40px;
     color:$colour-light;
     background-color:$colour-dark;    
   }
