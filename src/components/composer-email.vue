@@ -78,18 +78,20 @@
             ></textarea>
           </li>
           <li :class="[composerAttachments.length ? 'form__list-item' : 'form__list-item--hidden']">
-            <h2 class="form__attachment-header">Attached files</h2>
-            <div class="form__attachment-container">
-              <span v-for="(attachment, index) in composerAttachments" :key="index" class="form__attachment-image-wrapper">
-                <img :src="attachment.data" class="form__attachment-image" />
-                <div class="form__attachment-image-mask">
-                  <div class="form__attachment-image-icon-wrapper" @click="removeAttachment(attachment.name)">
-                    <svg class="form__attachment-image-icon" viewBox="0 0 24 24" width="24" height="24">
-                      <use :xlink:href="`#icon-bin`" />
-                    </svg>
+            <h2 class="attachment__header">Attached files</h2>
+            <div class="attachment__container">
+              <div v-for="(attachment, index) in composerAttachments" :key="index" class="attachment__item">
+                <span class="attachment__image-wrapper">
+                  <img :src="attachment.data" class="attachment__image" />
+                  <div class="attachment__image-mask">
+                    <div class="attachment__image-icon-wrapper" @click="removeAttachment(attachment.name)">
+                      <svg class="attachment__image-icon" viewBox="0 0 24 24" width="24" height="24">
+                        <use :xlink:href="`#icon-bin`" />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-              </span>
+                </span>
+              </div>
             </div>
             <label for="composer-attachment" class="form__label">Attachment</label>
             <input

@@ -30,10 +30,10 @@
         </template>             
       </div>
       <pre class="composer__confirmation-message">{{ composerForm.emailMessage }}</pre>
-      <div class="form__attachment-container">
-        <span v-for="(attachment, index) in composerForm.emailAttachments" :key="index" class="form__attachment-image-wrapper">
-          <img :src="attachment.data" class="form__attachment-image" />
-        </span>
+      <div class="attachment__container">
+        <div v-for="(attachment, index) in composerForm.emailAttachments" :key="index" class="attachment__item">
+          <img :src="attachment.data" class="attachment__image" />
+        </div>
       </div>
     </div>
   </div>

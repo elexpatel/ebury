@@ -8,10 +8,6 @@
   border-radius:5px;   
   color:$colour-placeholder;
   box-sizing:border-box;
-}
-
-input {
-  @extend %fieldStyling;
 
   &:focus {
     color:$colour-base;
@@ -19,12 +15,16 @@ input {
 
   &::placeholder {
     color:$colour-placeholder;
-  }
+  }  
+}
+
+input {
+  @extend %fieldStyling;
 }
 
 textarea {
   @extend %fieldStyling; 
-  line-height:1.5em;
+  line-height:1.5em; 
 }
 
 button {

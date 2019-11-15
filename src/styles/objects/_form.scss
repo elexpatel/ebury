@@ -54,61 +54,6 @@
     display:none;
   }
 
-  &__attachment-header {
-    font-size:1.0em;
-    font-weight:500;
-  }
-
-  &__attachment-container {
-    display:flex;
-    justify-content:flex-start;
-  }
-
-  &__attachment-image-wrapper {
-    position:relative;
-    margin-right:16px;
-  }
-
-  &__attachment-image-mask {
-    display:none;
-  }
-
-  &__attachment-image-wrapper:hover > .form__attachment-image-mask {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:rgba($colour-base, 0.8);
-    border-radius:5px;
-  }
-
-  &__attachment-image-icon-wrapper {
-    display:flex;
-    justify-content:center;
-    align-items:center;   
-    background-color:$colour-placeholder;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    cursor:pointer;
-  }
-
-  &__attachment-image-icon {
-    fill:$colour-light;
-    height:32px;
-    width:32px;
-  }
-
-  &__attachment-image {
-    max-width:100px;
-    max-height:100px;
-    border-radius:5px;
-  }
-
   &__button-container {
     display:flex;
     justify-content:space-between;
