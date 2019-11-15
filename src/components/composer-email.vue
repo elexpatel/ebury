@@ -77,10 +77,10 @@
               placeholder="Message"
             ></textarea>
           </li>
-          <li :class="[composerForm.emailAttachments.length ? 'form__list-item' : 'form__list-item--hidden']">
+          <li :class="[composerAttachments.length ? 'form__list-item' : 'form__list-item--hidden']">
             <h2 class="form__attachment-header">Attached files</h2>
             <div class="form__attachment-container">
-              <span v-for="(attachment, index) in composerForm.emailAttachments" :key="index" class="form__attachment-image-wrapper">
+              <span v-for="(attachment, index) in composerAttachments" :key="index" class="form__attachment-image-wrapper">
                 <img :src="attachment.data" class="form__attachment-image" />
                 <div class="form__attachment-image-mask">
                   <div class="form__attachment-image-icon-wrapper" @click="removeAttachment(attachment.name)">
@@ -261,13 +261,8 @@ export default {
         this.$store.dispatch("updateComposer", { emailMessage: value });
       }
     },
-    composerAttachment: {
-      get() {
-        return this.composerForm.emailMessage;
-      },
-      set(value) {
-        this.$store.dispatch("updateComposer", { emailMessage: value });
-      }
+    composerAttachments() {
+      return this.composerForm.emailAttachments;
     }
   },
   methods: {
