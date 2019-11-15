@@ -12,7 +12,7 @@ import ComposerConfirmation from "./components/composer-confirmation";
 import Icons from "./components/icons";
 
 export default {
-  name: "app",
+  name: "App",
   components: {
     ComposerEmail,
     ComposerConfirmation,
@@ -21,7 +21,7 @@ export default {
   computed: {
     composerConfirmationStatus() {
       return this.$store.getters.composerConfirmation;
-    },    
+    }
   }
 };
 </script>

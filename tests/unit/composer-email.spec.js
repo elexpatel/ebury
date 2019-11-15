@@ -1,9 +1,9 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import ComposerEmail from "@/components/composer-email";
-import Vuelidate from 'vuelidate'
+import Vuelidate from "vuelidate";
 
 const localVue = createLocalVue();
-localVue.use(Vuelidate)
+localVue.use(Vuelidate);
 
 let createConfig = overrides => {
   const mocks = {
@@ -16,12 +16,10 @@ let createConfig = overrides => {
           emailSubject: "",
           emailMessage: "",
           emailAttachments: []
-        },
+        }
       },
       commit: () => {},
-      dispatch: () => {
-
-      }
+      dispatch: () => {}
     }
   };
 
@@ -54,23 +52,25 @@ describe("composer-email.vue", () => {
     let config = createConfig();
     config.mocks.$store.getters.composerForm.emailTo = ["mock"];
     const wrapper = shallowMount(ComposerEmail, config);
-    
+
     wrapper.vm.$v.composerTo.$touch();
     expect(wrapper.vm.$v.composerTo.$error).toBeTruthy();
   });
 
   it("should allow multiple valid email addresses in 'To' field", () => {
     let config = createConfig();
-    config.mocks.$store.getters.composerForm.emailTo = ["mock@email.com"];    
+    config.mocks.$store.getters.composerForm.emailTo = ["mock@email.com"];
     const wrapper = shallowMount(ComposerEmail, config);
     wrapper.vm.$v.composerTo.$touch();
     expect(wrapper.vm.$v.composerTo.$error).toBeFalsy();
 
-    config.mocks.$store.getters.composerForm.emailTo = ["mock@email.com, mock"];    
+    config.mocks.$store.getters.composerForm.emailTo = ["mock@email.com, mock"];
     wrapper.vm.$v.composerTo.$touch();
     expect(wrapper.vm.$v.composerTo.$error).toBeTruthy();
 
-    config.mocks.$store.getters.composerForm.emailTo = ["mock@email.com, mock1@email.com"];    
+    config.mocks.$store.getters.composerForm.emailTo = [
+      "mock@email.com, mock1@email.com"
+    ];
     wrapper.vm.$v.composerTo.$touch();
     expect(wrapper.vm.$v.composerTo.$error).toBeFalsy();
   });
@@ -79,23 +79,25 @@ describe("composer-email.vue", () => {
     let config = createConfig();
     config.mocks.$store.getters.composerForm.emailCC = ["mock"];
     const wrapper = shallowMount(ComposerEmail, config);
-    
+
     wrapper.vm.$v.composerCC.$touch();
     expect(wrapper.vm.$v.composerCC.$error).toBeTruthy();
   });
 
   it("should allow multiple valid email addresses in 'CC' field", () => {
     let config = createConfig();
-    config.mocks.$store.getters.composerForm.emailCC = ["mock@email.com"];    
+    config.mocks.$store.getters.composerForm.emailCC = ["mock@email.com"];
     const wrapper = shallowMount(ComposerEmail, config);
     wrapper.vm.$v.composerCC.$touch();
     expect(wrapper.vm.$v.composerCC.$error).toBeFalsy();
 
-    config.mocks.$store.getters.composerForm.emailCC = ["mock@email.com, mock"];    
+    config.mocks.$store.getters.composerForm.emailCC = ["mock@email.com, mock"];
     wrapper.vm.$v.composerCC.$touch();
     expect(wrapper.vm.$v.composerCC.$error).toBeTruthy();
 
-    config.mocks.$store.getters.composerForm.emailCC = ["mock@email.com, mock1@email.com"];    
+    config.mocks.$store.getters.composerForm.emailCC = [
+      "mock@email.com, mock1@email.com"
+    ];
     wrapper.vm.$v.composerCC.$touch();
     expect(wrapper.vm.$v.composerCC.$error).toBeFalsy();
   });
@@ -104,26 +106,30 @@ describe("composer-email.vue", () => {
     let config = createConfig();
     config.mocks.$store.getters.composerForm.emailBCC = ["mock"];
     const wrapper = shallowMount(ComposerEmail, config);
-    
+
     wrapper.vm.$v.composerBCC.$touch();
     expect(wrapper.vm.$v.composerBCC.$error).toBeTruthy();
   });
 
   it("should allow multiple valid email addresses in 'BCC' field", () => {
     let config = createConfig();
-    config.mocks.$store.getters.composerForm.emailBCC = ["mock@email.com"];    
+    config.mocks.$store.getters.composerForm.emailBCC = ["mock@email.com"];
     const wrapper = shallowMount(ComposerEmail, config);
     wrapper.vm.$v.composerBCC.$touch();
     expect(wrapper.vm.$v.composerBCC.$error).toBeFalsy();
 
-    config.mocks.$store.getters.composerForm.emailBCC = ["mock@email.com, mock"];    
+    config.mocks.$store.getters.composerForm.emailBCC = [
+      "mock@email.com, mock"
+    ];
     wrapper.vm.$v.composerBCC.$touch();
     expect(wrapper.vm.$v.composerBCC.$error).toBeTruthy();
 
-    config.mocks.$store.getters.composerForm.emailBCC = ["mock@email.com, mock1@email.com"];    
+    config.mocks.$store.getters.composerForm.emailBCC = [
+      "mock@email.com, mock1@email.com"
+    ];
     wrapper.vm.$v.composerBCC.$touch();
     expect(wrapper.vm.$v.composerBCC.$error).toBeFalsy();
-  });  
+  });
 
   it("should invalidate 'Subject' field if no value entered", () => {
     let config = createConfig();
@@ -134,13 +140,14 @@ describe("composer-email.vue", () => {
 
   it("should invalidate 'Subject' field if value over 100 charaters", () => {
     let config = createConfig();
-    
-    config.mocks.$store.getters.composerForm.emailSubject = "This subject line field should make the validation fail if there is more than 100 characters in the subject content"; 
+
+    config.mocks.$store.getters.composerForm.emailSubject =
+      "This subject line field should make the validation fail if there is more than 100 characters in the subject content";
 
     const wrapper = shallowMount(ComposerEmail, config);
     wrapper.vm.$v.composerSubject.$touch();
     expect(wrapper.vm.$v.composerSubject.$error).toBeTruthy();
-  });  
+  });
 
   it("should invalidate 'Message' field if no value entered", () => {
     let config = createConfig();
@@ -151,21 +158,25 @@ describe("composer-email.vue", () => {
 
   it("should show preview of attached files", () => {
     let config = createConfig();
-    config.mocks.$store.getters.composerForm.emailAttachments = [{
-      name: 'mock1.jpg',
-      data: 'imagedata1.jpg'
-    }];    
+    config.mocks.$store.getters.composerForm.emailAttachments = [
+      {
+        name: "mock1.jpg",
+        data: "imagedata1.jpg"
+      }
+    ];
     const wrapper = shallowMount(ComposerEmail, config);
 
-    expect(wrapper.vm.composerAttachments).toEqual(config.mocks.$store.getters.composerForm.emailAttachments);
-    expect(wrapper.findAll(".form__attachment-image-wrapper").length).toBe(1);
+    expect(wrapper.vm.composerAttachments).toEqual(
+      config.mocks.$store.getters.composerForm.emailAttachments
+    );
+    expect(wrapper.findAll(".attachment__image-wrapper").length).toBe(1);
   });
 
   it("should only show active submit button when all required fields are valid", () => {
     let config = createConfig();
-    config.mocks.$store.getters.composerForm.emailTo = ["mock@email.com"]; 
-    config.mocks.$store.getters.composerForm.emailSubject = "Mock subject"; 
-    config.mocks.$store.getters.composerForm.emailMessage = "Mock message"; 
+    config.mocks.$store.getters.composerForm.emailTo = ["mock@email.com"];
+    config.mocks.$store.getters.composerForm.emailSubject = "Mock subject";
+    config.mocks.$store.getters.composerForm.emailMessage = "Mock message";
 
     const wrapper = shallowMount(ComposerEmail, config);
 

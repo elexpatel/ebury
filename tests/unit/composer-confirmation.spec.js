@@ -43,54 +43,56 @@ describe("composer-confirmation.vue", () => {
 
   it("should show confirmation panel with 'CC' email address", () => {
     let config = createConfig();
-    
-    config.mocks.$store.getters.composerForm.emailCC = ["mockCC@email.com"]
-    
+
+    config.mocks.$store.getters.composerForm.emailCC = ["mockCC@email.com"];
+
     const wrapper = shallowMount(ComposerConfirmation, config);
 
     expect(wrapper.vm.composerForm.emailCC).toEqual(["mockCC@email.com"]);
   });
-  
+
   it("should show confirmation panel with 'BCC' email address", () => {
     let config = createConfig();
-    
-    config.mocks.$store.getters.composerForm.emailBCC = ["mockBCC@email.com"]
-    
+
+    config.mocks.$store.getters.composerForm.emailBCC = ["mockBCC@email.com"];
+
     const wrapper = shallowMount(ComposerConfirmation, config);
 
     expect(wrapper.vm.composerForm.emailBCC).toEqual(["mockBCC@email.com"]);
-  });  
-  
+  });
+
   it("should show confirmation panel with attachment files", () => {
     let config = createConfig();
-    
+
     config.mocks.$store.getters.composerForm.emailAttachements = [
       {
-        name: 'mock1.jpg',
-        data: 'imagedata1.jpg'
+        name: "mock1.jpg",
+        data: "imagedata1.jpg"
       }
-    ]
-    
+    ];
+
     const wrapper = shallowMount(ComposerConfirmation, config);
-    expect(wrapper.vm.composerForm.emailAttachements).toEqual(config.mocks.$store.getters.composerForm.emailAttachements);
-    expect(wrapper.find(".form__attachment-container").exists()).toBeTruthy();
-  });  
+    expect(wrapper.vm.composerForm.emailAttachements).toEqual(
+      config.mocks.$store.getters.composerForm.emailAttachements
+    );
+    expect(wrapper.find(".attachment__container").exists()).toBeTruthy();
+  });
 
   it("should show confirmation panel with two attachment files", () => {
     let config = createConfig();
-    
+
     config.mocks.$store.getters.composerForm.emailAttachements = [
       {
-        name: 'mock1.jpg',
-        data: 'imagedata1.jpg'
+        name: "mock1.jpg",
+        data: "imagedata1.jpg"
       },
       {
-        name: 'mock1.jpg',
-        data: 'imagedata1.jpg'
+        name: "mock1.jpg",
+        data: "imagedata1.jpg"
       }
-    ]
-    
+    ];
+
     const wrapper = shallowMount(ComposerConfirmation, config);
     expect(wrapper.vm.composerForm.emailAttachements).toHaveLength(2);
-  });  
+  });
 });

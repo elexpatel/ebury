@@ -3,15 +3,15 @@
     <div class="composer__header-container">
       <h1 class="composer__header">Send E-mail</h1>
     </div>
-    <form class="form" @submit.prevent novalidate enctype="multipart/form-data">
+    <form class="form" novalidate enctype="multipart/form-data" @submit.prevent>
       <fieldset class="form__fieldset">
         <legend class="form__legend">Send E-mail</legend>
         <ul class="form__list">
           <li class="form__list-item">
             <label for="composer-to-email" class="form__label">To</label>
             <input
-              v-model="composerTo"
               id="composer-to-email"
+              v-model="composerTo"
               type="email"
               class="form__field"
               :class="{
@@ -24,8 +24,8 @@
           <li class="form__list-item">
             <label for="composer-cc-email" class="form__label">CC</label>
             <input
-              v-model="composerCC"
               id="composer-cc-email"
+              v-model="composerCC"
               type="email"
               class="form__field"
               :class="{
@@ -38,8 +38,8 @@
           <li class="form__list-item">
             <label for="composer-bcc-email" class="form__label">BCC</label>
             <input
-              v-model="composerBCC"
               id="composer-bcc-email"
+              v-model="composerBCC"
               type="email"
               class="form__field"
               :class="{
@@ -52,8 +52,8 @@
           <li class="form__list-item">
             <label for="composer-subject" class="form__label">Subject</label>
             <input
-              v-model="composerSubject"
               id="composer-subject"
+              v-model="composerSubject"
               type="text"
               class="form__field"
               :class="{
@@ -67,8 +67,8 @@
           <li class="form__list-item">
             <label for="composer-message" class="form__label">Message</label>
             <textarea
-              v-model="composerMessage"
               id="composer-message"
+              v-model="composerMessage"
               class="form__field form__field-textarea"
               :class="{
                 'form__field--invalid': $v.composerMessage.$error,
@@ -77,15 +77,33 @@
               placeholder="Message"
             ></textarea>
           </li>
-          <li :class="[composerAttachments.length ? 'form__list-item' : 'form__list-item--hidden']">
+          <li
+            :class="[
+              composerAttachments.length
+                ? 'form__list-item'
+                : 'form__list-item--hidden'
+            ]"
+          >
             <h2 class="attachment__header">Attached files</h2>
             <div class="attachment__container">
-              <div v-for="(attachment, index) in composerAttachments" :key="index" class="attachment__item">
+              <div
+                v-for="(attachment, index) in composerAttachments"
+                :key="index"
+                class="attachment__item"
+              >
                 <span class="attachment__image-wrapper">
                   <img :src="attachment.data" class="attachment__image" />
                   <div class="attachment__image-mask">
-                    <div class="attachment__image-icon-wrapper" @click="removeAttachment(attachment.name)">
-                      <svg class="attachment__image-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <div
+                      class="attachment__image-icon-wrapper"
+                      @click="removeAttachment(attachment.name)"
+                    >
+                      <svg
+                        class="attachment__image-icon"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                      >
                         <use :xlink:href="`#icon-bin`" />
                       </svg>
                     </div>
@@ -93,17 +111,17 @@
                 </span>
               </div>
             </div>
-            <label for="composer-attachment" class="form__label">Attachment</label>
+            <label for="composer-attachment" class="form__label"
+              >Attachment</label
+            >
             <input
-              ref="attachmentField"
-              @change="
-                updatedAttachment($event.target.files)
-              "
               id="composer-attachment"
+              ref="attachmentField"
               type="file"
               class="form__field form__field-attachment"
               multiple
               accept="image/*"
+              @change="updatedAttachment($event.target.files)"
             />
           </li>
         </ul>
@@ -158,8 +176,8 @@ import { multipleEmails } from "../utilities/custom-validation";
 export default {
   data() {
     return {
-      attachmentList:[]
-    }
+      attachmentList: []
+    };
   },
   validations: {
     composerTo: {
@@ -262,7 +280,7 @@ export default {
     sendEmail() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        this.$store.dispatch('sendComposer');
+        this.$store.dispatch("sendComposer");
         //console.log("send");
       }
     },
@@ -271,10 +289,16 @@ export default {
     },
     updatedAttachment(files) {
       if (files.length === 1) {
-        this.$store.dispatch("addAttachment", { name: files[0].name, data: URL.createObjectURL(files[0]) });
+        this.$store.dispatch("addAttachment", {
+          name: files[0].name,
+          data: URL.createObjectURL(files[0])
+        });
       } else if (files.length > 1) {
         Array.from(files).forEach(file => {
-          this.$store.dispatch("addAttachment", { name: file.name, data: URL.createObjectURL(file) });
+          this.$store.dispatch("addAttachment", {
+            name: file.name,
+            data: URL.createObjectURL(file)
+          });
         });
       }
     },

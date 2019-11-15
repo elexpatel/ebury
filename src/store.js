@@ -13,7 +13,7 @@ const state = {
     emailAttachments: []
   },
   composerConfirmation: false
-}
+};
 
 export const actions = {
   updateComposer($event, payload) {
@@ -28,8 +28,8 @@ export const actions = {
   },
   removeAttachment($event, id) {
     $event.commit("REMOVE_COMPOSER_ATTACHMENT", id);
-  }   
-}
+  }
+};
 
 export const mutations = {
   UPDATE_COMPOSER(state, payload) {
@@ -39,17 +39,22 @@ export const mutations = {
     state.composerConfirmation = status;
   },
   ADD_COMPOSER_ATTACHMENT(state, file) {
-    state.composerForm.emailAttachments = [...state.composerForm.emailAttachments, file];
+    state.composerForm.emailAttachments = [
+      ...state.composerForm.emailAttachments,
+      file
+    ];
   },
   REMOVE_COMPOSER_ATTACHMENT(state, filename) {
-    state.composerForm.emailAttachments = state.composerForm.emailAttachments.filter(attachment => attachment.name !== filename);
+    state.composerForm.emailAttachments = state.composerForm.emailAttachments.filter(
+      attachment => attachment.name !== filename
+    );
   }
-}
+};
 
 export const getters = {
   composerForm: state => state.composerForm,
   composerConfirmation: state => state.composerConfirmation
-}
+};
 
 export default new Vuex.Store({
   state,
