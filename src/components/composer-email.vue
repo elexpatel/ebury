@@ -197,7 +197,7 @@ export default {
   },
   computed: {
     composerForm() {
-      return this.$store.getters.composerFrom;
+      return this.$store.getters.composerForm;
     },
     composerTo: {
       get() {

@@ -45,7 +45,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    composerFrom: state => state.composerForm,
+    composerForm: state => state.composerForm,
     composerConfirmation: state => state.composerConformation
   }
 });
