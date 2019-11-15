@@ -1,10 +1,10 @@
 .composer {
-  min-width:700px;
-  min-height:500px;
+  flex:0 1 100%;
   background-color:$colour-light;
   border-radius:5px;
   box-shadow:0 5px 20px rgba(0, 0, 0, 0.3);
   overflow:hidden;
+  margin:0 16px;
 
   &__header-container {
     padding:32px;
@@ -16,5 +16,54 @@
     font-size:1.2em;
     margin:0;
     color:$colour-light;
+  }
+
+  &__confirmation {
+    margin:66px 96px 75px;
+  }
+
+  &__confirmation-header-container {
+    display:flex;
+    justify-content:center;
+    flex-flow:row wrap;
+  }
+
+  &__confirmation-header {
+    color:$colour-placeholder;
+    font-size:1.4em;
+  }
+
+  &__confirmation-divider {
+    border:0;
+    border-top:solid 1px $colour-border;
+  }
+
+  &__confirmation-subject {
+    font-weight:500;
+    font-size:1.2em;
+    margin-bottom:0.2em;
+  }
+
+  &__confirmation-message {
+    white-space: pre-wrap;
+  }
+
+  &__confirmation-recipient {
+    color:$colour-placeholder;
+    margin:0 0 0.5em;
+  }
+
+  &__confirmation-recipient-email {
+    color:$colour-primary;
+    font-weight:500;
+    margin-right:1.0em;
+  }
+}
+
+
+@include grid-media-query("small-outwards") {
+  .composer {
+    flex:0 0 auto;
+    min-width:712px;
   }
 }

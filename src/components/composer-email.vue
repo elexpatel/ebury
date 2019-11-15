@@ -274,7 +274,8 @@ export default {
     sendEmail() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        console.log("send");
+        this.$store.dispatch('sendComposer');
+        //console.log("send");
       }
     },
     openAttachment() {
