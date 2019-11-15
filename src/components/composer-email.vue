@@ -19,7 +19,7 @@
                 'form__field--valid': !$v.composerTo.$invalid
               }"
               placeholder="To"
-              @blur="checkFieldValidation"
+              @keyup="checkRequirementValidation"
             />
             <div
               v-show="$v.composerTo.$error && !$v.composerTo.required"
@@ -46,7 +46,7 @@
                 'form__field--valid': !$v.composerCC.$invalid
               }"
               placeholder="CC"
-              @blur="checkFieldValidation"
+              @keyup="checkRequirementValidation"
             />
             <div
               v-show="$v.composerCC.$error && !$v.composerCC.required"
@@ -73,7 +73,7 @@
                 'form__field--valid': !$v.composerBCC.$invalid
               }"
               placeholder="BCC"
-              @blur="checkFieldValidation"
+              @keyup="checkRequirementValidation"
             />
             <div
               v-show="$v.composerBCC.$error && !$v.composerBCC.required"
@@ -101,7 +101,7 @@
               }"
               placeholder="Subject"
               maxLength="100"
-              @blur="checkFieldValidation"
+              @keyup="checkRequirementValidation"
             />
             <div
               v-show="$v.composerSubject.$error && !$v.composerSubject.required"
@@ -130,7 +130,7 @@
                 'form__field--valid': !$v.composerMessage.$invalid
               }"
               placeholder="Message"
-              @blur="checkFieldValidation"
+              @keyup="checkRequirementValidation"
             ></textarea>
             <div
               v-show="$v.composerMessage.$error && !$v.composerMessage.required"
@@ -317,6 +317,7 @@ export default {
       },
       set(value) {
         this.$store.dispatch("updateComposer", { emailSubject: value });
+        this.$v.composerSubject.$touch();
       }
     },
     composerMessage: {
@@ -325,6 +326,7 @@ export default {
       },
       set(value) {
         this.$store.dispatch("updateComposer", { emailMessage: value });
+        this.$v.composerMessage.$touch();
       }
     },
     composerAttachments() {
@@ -332,8 +334,10 @@ export default {
     }
   },
   methods: {
-    checkFieldValidation() {
-      //this.$v.$touch();
+    checkRequirementValidation() {
+      if ((!this.$v.composerTo.$invalid || !this.$v.composerCC.$invalid || !this.$v.composerBCC.$invalid) && !this.$v.composerSubject.$invalid && !this.$v.composerMessage.$invalid) {
+        this.$v.$touch();
+      }
     },
     sendEmail() {
       this.$v.$touch();
