@@ -19,6 +19,7 @@
                 'form__field--valid': !$v.composerTo.$invalid
               }"
               placeholder="To"
+              @blur="checkFieldValidation"
             />
             <div
               v-show="$v.composerTo.$error && !$v.composerTo.required"
@@ -45,6 +46,7 @@
                 'form__field--valid': !$v.composerCC.$invalid
               }"
               placeholder="CC"
+              @blur="checkFieldValidation"
             />
             <div
               v-show="$v.composerCC.$error && !$v.composerCC.required"
@@ -71,6 +73,7 @@
                 'form__field--valid': !$v.composerBCC.$invalid
               }"
               placeholder="BCC"
+              @blur="checkFieldValidation"
             />
             <div
               v-show="$v.composerBCC.$error && !$v.composerBCC.required"
@@ -98,6 +101,7 @@
               }"
               placeholder="Subject"
               maxLength="100"
+              @blur="checkFieldValidation"
             />
             <div
               v-show="$v.composerSubject.$error && !$v.composerSubject.required"
@@ -126,6 +130,7 @@
                 'form__field--valid': !$v.composerMessage.$invalid
               }"
               placeholder="Message"
+              @blur="checkFieldValidation"
             ></textarea>
             <div
               v-show="$v.composerMessage.$error && !$v.composerMessage.required"
@@ -271,11 +276,9 @@ export default {
           : "";
       },
       set(value) {
-        if (value.indexOf(",") !== -1) {
-          value = value.split(",");
-        } else {
-          value = [value.trim()];
-        }
+        value = value.indexOf(",") !== -1 ? value.split(",") : value.trim();
+        if (value === "") return false;
+        value = !Array.isArray(value) ? [value] : value;
         this.$store.dispatch("updateComposer", { emailTo: value });
         this.$v.composerTo.$touch();
       }
@@ -287,12 +290,11 @@ export default {
           : "";
       },
       set(value) {
-        if (value.indexOf(",") !== -1) {
-          value = value.split(",");
-        } else {
-          value = [value.trim()];
-        }
+        value = value.indexOf(",") !== -1 ? value.split(",") : value.trim();
+        if (value === "") return false;
+        value = !Array.isArray(value) ? [value] : value;
         this.$store.dispatch("updateComposer", { emailCC: value });
+        this.$v.composerCC.$touch();
       }
     },
     composerBCC: {
@@ -302,12 +304,11 @@ export default {
           : "";
       },
       set(value) {
-        if (value.indexOf(",") !== -1) {
-          value = value.split(",");
-        } else {
-          value = [value.trim()];
-        }
-        this.$store.dispatch("updateComposer", { emailBCC: value });
+        value = value.indexOf(",") !== -1 ? value.split(",") : value.trim();
+        if (value === "") return false;
+        value = !Array.isArray(value) ? [value] : value;
+        this.$store.dispatch("updateComposer", { emailBCC: value });       
+        this.$v.composerBCC.$touch();
       }
     },
     composerSubject: {
@@ -331,6 +332,9 @@ export default {
     }
   },
   methods: {
+    checkFieldValidation() {
+      //this.$v.$touch();
+    },
     sendEmail() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
