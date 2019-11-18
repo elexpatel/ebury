@@ -14,36 +14,36 @@
       </div>
       <hr class="composer__confirmation-divider" />
       <h3 class="composer__confirmation-subject">
-        {{ composerForm.emailSubject }}
+        {{ state.composerForm.emailSubject }}
       </h3>
       <div class="composer__confirmation-recipient-container">
-        <template v-if="composerForm.emailTo.length">
+        <template v-if="state.composerForm.emailTo.length">
           <p class="composer__confirmation-recipient">
             to
             <span
-              v-for="(to, index) in composerForm.emailTo"
+              v-for="(to, index) in state.composerForm.emailTo"
               :key="index"
               class="composer__confirmation-recipient-email"
               >{{ to }}</span
             >
           </p>
         </template>
-        <template v-if="composerForm.emailCC.length">
+        <template v-if="state.composerForm.emailCC.length">
           <p class="composer__confirmation-recipient">
             cc
             <span
-              v-for="(cc, index) in composerForm.emailCC"
+              v-for="(cc, index) in state.composerForm.emailCC"
               :key="index"
               class="composer__confirmation-recipient-email"
               >{{ cc }}</span
             >
           </p>
         </template>
-        <template v-if="composerForm.emailBCC.length">
+        <template v-if="state.composerForm.emailBCC.length">
           <p class="composer__confirmation-recipient">
             bcc
             <span
-              v-for="(bcc, index) in composerForm.emailBCC"
+              v-for="(bcc, index) in state.composerForm.emailBCC"
               :key="index"
               class="composer__confirmation-recipient-email"
               >{{ bcc }}</span
@@ -52,11 +52,11 @@
         </template>
       </div>
       <pre class="composer__confirmation-message">{{
-        composerForm.emailMessage
+        state.composerForm.emailMessage
       }}</pre>
       <div class="attachment__container">
         <div
-          v-for="(attachment, index) in composerForm.emailAttachments"
+          v-for="(attachment, index) in state.composerForm.emailAttachments"
           :key="index"
           class="attachment__item"
         >
@@ -68,10 +68,16 @@
 </template>
 
 <script>
+import { reactive, computed } from '@vue/composition-api';
+
 export default {
-  computed: {
-    composerForm() {
-      return this.$store.getters.composerForm;
+  setup(props, context) {
+    const state = reactive({
+      composerForm: computed(() => context.root.$store.getters.composerForm)
+    })
+
+    return {
+      state
     }
   }
 };

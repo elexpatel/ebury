@@ -12,7 +12,7 @@ const state = {
     emailMessage: "",
     emailAttachments: []
   },
-  composerConfirmation: false
+  composerConfirmation: true
 };
 
 export const actions = {
