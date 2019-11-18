@@ -23,6 +23,7 @@ npm run test
 
 ## Additional features
 * Demonstrate use of new VueJS Composition API on component '/src/components/composer-confirmation.vue'
+* Add unit test for components and Vuex store
 * Add validation message under each field
 * Add micro animation on validation message
 * Field border colour changed on validation success
