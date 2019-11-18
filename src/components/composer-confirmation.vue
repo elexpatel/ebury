@@ -68,17 +68,17 @@
 </template>
 
 <script>
-import { reactive, computed } from '@vue/composition-api';
+import { reactive, computed } from "@vue/composition-api";
 
 export default {
   setup(props, context) {
     const state = reactive({
       composerForm: computed(() => context.root.$store.getters.composerForm)
-    })
+    });
 
     return {
       state
-    }
+    };
   }
 };
 </script>

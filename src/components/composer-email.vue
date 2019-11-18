@@ -307,7 +307,7 @@ export default {
         value = value.indexOf(",") !== -1 ? value.split(",") : value.trim();
         if (value === "") return false;
         value = !Array.isArray(value) ? [value] : value;
-        this.$store.dispatch("updateComposer", { emailBCC: value });       
+        this.$store.dispatch("updateComposer", { emailBCC: value });
         this.$v.composerBCC.$touch();
       }
     },
@@ -335,7 +335,13 @@ export default {
   },
   methods: {
     checkRequirementValidation() {
-      if ((!this.$v.composerTo.$invalid || !this.$v.composerCC.$invalid || !this.$v.composerBCC.$invalid) && !this.$v.composerSubject.$invalid && !this.$v.composerMessage.$invalid) {
+      if (
+        (!this.$v.composerTo.$invalid ||
+          !this.$v.composerCC.$invalid ||
+          !this.$v.composerBCC.$invalid) &&
+        !this.$v.composerSubject.$invalid &&
+        !this.$v.composerMessage.$invalid
+      ) {
         this.$v.$touch();
       }
     },
