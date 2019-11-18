@@ -1,0 +1,15 @@
+%copy-styles {
+  font-family:$font-family;
+  font-size:1.0em;
+  font-weight:400;
+  line-height:1.5em;
+  color:$colour-base;
+}
+
+p {
+  @extend %copy-styles;
+}
+
+pre {
+  @extend %copy-styles;
+}

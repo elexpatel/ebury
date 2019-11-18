@@ -1,0 +1,20 @@
+.icon {
+  &__composer-confirmation {
+    flex:1 0 100%;
+    width:7.7em;
+    height:7.7em;
+    fill: $colour-success;
+  }
+
+  &__composer-send {
+    margin:0 6px;
+    fill:$colour-light;
+  } 
+  
+  &__composer-attachment {
+    position:absolute;
+    top:8px;
+    left:6px;
+    fill:$colour-placeholder;
+  }  
+}

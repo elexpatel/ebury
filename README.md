@@ -1,4 +1,5 @@
-# ebury-temp
+# Ebury
+
 
 ## Project setup
 ```
@@ -20,15 +21,10 @@ npm run build
 npm run test
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Additional features
+* Demonstrate use of new VueJS Composition API on component '/src/components/composer-confirmation.vue'
+* Add validation message under each field
+* Add micro animation on validation message
+* Field border colour changed on validation success
+* Transition effect on border colour change
+* Add page transition when valid form submitted

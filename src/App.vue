@@ -1,28 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <transition name="composer" mode="out-in">
+      <ComposerEmail v-if="!composerConfirmationStatus" />
+      <ComposerConfirmation v-else />
+    </transition>
+    <Icons />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import ComposerEmail from "./components/composer-email";
+import ComposerConfirmation from "./components/composer-confirmation";
+import Icons from "./components/icons";
 
 export default {
-  name: "app",
+  name: "App",
   components: {
-    HelloWorld
+    ComposerEmail,
+    ComposerConfirmation,
+    Icons
+  },
+  computed: {
+    composerConfirmationStatus() {
+      return this.$store.getters.composerConfirmation;
+    }
   }
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "./styles/_base";
 </style>

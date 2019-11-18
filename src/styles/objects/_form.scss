@@ -1,0 +1,100 @@
+.form {
+  padding:0;
+  margin:0;
+
+  &__fieldset {
+    border:0;
+    padding:0;
+    margin:0;
+  }
+
+  &__legend {
+    display:none;
+  }
+
+  &__list {
+    list-style:none;
+    padding:0;
+    margin:40px 40px 0;
+  }
+
+  &__list-item {
+    margin-bottom:16px;
+  } 
+
+  &__list-item--hidden {
+    display:none;
+  }  
+  
+  &__label {
+    display:none;
+  }
+
+  &__field {
+    -webkit-appearance: none;
+    -moz-appearance: none;	
+    appearance:none;
+    display:inline-block;    
+    width: 100%;
+    transition: border ease-in 0.25s, box-shadow ease-in 0.2s;
+  }
+
+  &__field:focus {
+    border-color:$colour-primary;
+  }  
+
+  &__field--invalid {
+    border:solid 1px $colour-danger;
+    color:$colour-base;    
+  }
+
+  &__field--valid {
+    border:solid 1px $colour-success;
+    color:$colour-base;    
+  }  
+  
+  &__field-textarea {
+    height:15.0em;
+  }
+
+  &__field-attachment {
+    display:none;
+  }
+
+  &__field-validation-message--invalid {
+    padding-top:0.5em;
+    font-family:$font-family;
+    font-size:0.9em;
+    color:$colour-danger;
+    @include fadeInDownShort($duration:0.25s);
+  }  
+
+  &__button-container {
+    display:flex;
+    justify-content:space-between;
+    margin:0 40px 40px;
+  }
+
+  &__button--inactive {
+    color:$colour-placeholder;
+    background-color:$colour-border;    
+  }
+
+  &__button--inactive > .icon__composer-send {
+    fill:$colour-placeholder;
+  }
+
+  &__button-sr-only {
+    display:none;
+  }
+
+  &__button-attachment {
+    width:2.5em;
+    height:2.5em;
+    color:$colour-base;
+    background-color:$colour-light;
+    border-radius:100%;
+    border:solid 1px $colour-border;
+    position:relative;
+  }
+}
